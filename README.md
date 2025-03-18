@@ -59,3 +59,142 @@
   </a>
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل الدخول</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>تسجيل الدخول إلى حسابك</h1>
+  </header>
+
+  <section>
+    <form id="loginForm">
+      <label for="email">البريد الإلكتروني:</label>
+      <input type="email" id="email" placeholder="أدخل بريدك الإلكتروني" required>
+
+      <label for="password">كلمة المرور:</label>
+      <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
+
+      <button type="submit">تسجيل الدخول</button>
+    </form>
+
+    <p>ليس لديك حساب؟ <a href="signup.html">أنشئ حسابًا جديدًا</a></p>
+  </section>
+
+  <footer>
+    <p>جميع الحقوق محفوظة © 2025</p>
+  </footer>
+
+  <script src="firebase.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إنشاء حساب</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>إنشاء حساب جديد</h1>
+  </header>
+
+  <section>
+    <form id="signupForm">
+      <label for="name">الاسم الكامل:</label>
+      <input type="text" id="name" placeholder="أدخل اسمك الكامل" required>
+
+      <label for="email">البريد الإلكتروني:</label>
+      <input type="email" id="email" placeholder="أدخل بريدك الإلكتروني" required>
+
+      <label for="password">كلمة المرور:</label>
+      <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
+
+      <button type="submit">إنشاء حساب</button>
+    </form>
+
+    <p>هل لديك حساب؟ <a href="login.html">تسجيل الدخول</a></p>
+  </section>
+
+  <footer>
+    <p>جميع الحقوق محفوظة © 2025</p>
+  </footer>
+
+  <script src="firebase.js"></script>
+</body>
+</html>
+
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js">head</script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js">head</script>
+
+const signupForm = document.getElementById("signupForm");
+signupForm.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      alert("تم إنشاء الحساب بنجاح");
+    })
+    .catch((error) => {
+      alert("حدث خطأ: " + error.message);
+    });
+});
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+    background-color: #f4f4f4;
+  }
+  
+  header {
+    background-color: #0f4c75;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin: 0 15px;
+  }
+  
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  section {
+    padding: 20px;
+    margin: 10px 0;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #0f4c75;
+    color: white;
+  }
+
+  
